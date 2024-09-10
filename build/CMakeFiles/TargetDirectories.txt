@@ -1,3 +1,0 @@
-/home/sofoklis/Desktop/deep_learning/build/CMakeFiles/deep_learning_lib.dir
-/home/sofoklis/Desktop/deep_learning/build/CMakeFiles/edit_cache.dir
-/home/sofoklis/Desktop/deep_learning/build/CMakeFiles/rebuild_cache.dir

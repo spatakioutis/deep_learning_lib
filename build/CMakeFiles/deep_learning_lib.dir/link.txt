@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/deep_learning_lib.dir/src/main.cpp.o -o deep_learning_lib 
