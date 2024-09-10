@@ -7,6 +7,8 @@ project(DeepLearning VERSION 1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+file(GLOB SRC_FILES "src/*.cpp")
+
 # Add the executable
-add_executable(deep_learning_lib src/main.cpp)
+add_executable(deep_learning_lib ${SRC_FILES})
 
