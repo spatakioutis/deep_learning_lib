@@ -26,6 +26,7 @@ Tensor::Tensor(std::vector<std::vector<float>>& values) {
 }
 
 float& Tensor::operator()(int i, int j) {
+
     if ( i >= rows || j >= cols || i < 0 || j < 0 ) {
         throw std::out_of_range("Out of bounds indexes");
     }
@@ -41,4 +42,26 @@ void Tensor::print() {
         }
         std::cout << std::endl;
     }
+}
+
+Tensor Tensor::dot(const Tensor& other) {
+
+    if (this->cols != other.rows) {
+        throw std::invalid_argument("Number of columns of the first matrix must equal the number of rows of the second matrix.");
+    }
+    
+    Tensor result(this->rows, other.cols);
+
+    for (int i = 0; i < this->rows; i++) {
+        for (int j = 0; j < other.cols; j++) {
+
+            float sum = 0.0f;
+            for (int k = 0; k < this->cols; k++) {
+                sum += this->data[i][k] * other.data[k][j];
+            }
+            result(i, j) = sum;
+        }
+    }
+
+    return result;
 }
