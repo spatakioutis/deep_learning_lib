@@ -2,6 +2,7 @@
 #define TENSOR_H
 
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <stdexcept>
 

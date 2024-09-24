@@ -36,12 +36,17 @@ float& Tensor::operator()(int i, int j) {
 
 void Tensor::print() {
 
-    for (const auto& row : data) {
-        for (const auto& item : row) {
-            std::cout << " " << item << " ";
+    std::cout << "Tensor ("<< rows << " x " << cols << "):" << std::endl;
+
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            std::cout << std::fixed << std::setprecision(3) 
+                      << std::setw(6) << data[i][j] << " ";
         }
         std::cout << std::endl;
     }
+
+    std::cout << std::endl;
 }
 
 Tensor Tensor::dot(const Tensor& other) {
@@ -59,7 +64,36 @@ Tensor Tensor::dot(const Tensor& other) {
             for (int k = 0; k < this->cols; k++) {
                 sum += this->data[i][k] * other.data[k][j];
             }
-            result(i, j) = sum;
+            result(i,j) = sum;
+        }
+    }
+
+    return result;
+}
+
+Tensor Tensor::add(const Tensor& other) {
+
+    if (this->rows != other.rows || this->cols != other.cols) {
+        throw std::invalid_argument("Dimensions of tensors must match.");
+    }
+
+    Tensor result(this->rows, this->cols);
+
+    for (int i = 0; i < this->rows; i++) {
+        for (int j = 0; j < this->cols; j++) {
+            result(i,j) = this->data[i][j] + other.data[i][j];
+        }
+    }
+
+    return result;
+}
+
+Tensor Tensor::transpose() {
+    Tensor result(this->cols, this->rows);
+
+    for (int i = 0; i < this->rows; i++) {
+        for (int j = 0; j < this->cols; j++) {
+            result(j,i) = this->data[i][j];
         }
     }
 
